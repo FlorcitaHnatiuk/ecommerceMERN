@@ -33,7 +33,7 @@ export default function PaymentMethodScreen() {
                 <Helmet>
                     <title>Payment Method Screen</title>
                 </Helmet>
-                <h1 className="my-3">Payment Method</h1>
+                <h1 className="text-center my-3">Payment Method</h1>
                 <Form onSubmit={submitHandler}>
                     <div className="mb-3">
                         <Form.Check

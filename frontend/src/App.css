@@ -13,6 +13,11 @@
   }
 }
 
+.gradient-container{
+  background: rgb(36,0,6);
+  background: linear-gradient(90deg, rgba(36,0,6,1) 0%, rgba(215,214,110,1) 38%, rgba(209,211,112,1) 61%, rgba(75,139,152,1) 100%);
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
