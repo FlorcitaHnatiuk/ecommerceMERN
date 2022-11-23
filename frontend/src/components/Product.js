@@ -45,6 +45,7 @@ function Product(props) {
           </Button>
         ) : (
           <Button onClick={() => addToCartHandler(product)}>Add to cart</Button>
+          // <button className="magic-button" onClick={() => addToCartHandler(product)}>Add to cart</button>
         )}
       </Card.Body>
     </Card>
