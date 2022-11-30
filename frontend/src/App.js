@@ -163,12 +163,6 @@ function App() {
         </main>
         <footer className="bg-dark p-3 text-light">
           <div className="text-center">Made with ♥ by Flor Hnatiuk</div>
-          <div className="container">
-            <ul className="">
-              <li className="social"><SocialIcon url="https://www.linkedin.com/in/florenciahnatiuk/" bgColor="#fff" /></li>
-              <li className="social"><SocialIcon url="https://github.com/FlorcitaHnatiuk" network="github" bgColor="#fff" /></li>
-            </ul>
-          </div>
         </footer>
       </div>
     </BrowserRouter>
