@@ -24,7 +24,6 @@ import Button from 'react-bootstrap/Button';
 import { getError } from './utils';
 import axios from 'axios';
 import SearchBox from './components/SearchBox';
-import { SocialIcon } from 'react-social-icons';
 import SearchScreen from './screens/SearchScreen';
 
 function App() {
@@ -73,7 +72,7 @@ function App() {
               </Button>
 
               <LinkContainer to="/">
-                <Navbar.Brand>ecommerce</Navbar.Brand>
+                <Navbar.Brand>amazona</Navbar.Brand>
               </LinkContainer>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
@@ -161,14 +160,8 @@ function App() {
             </Routes>
           </Container>
         </main>
-        <footer className="bg-dark p-3 text-light">
-          <div className="text-center">Made with ♥ by Flor Hnatiuk</div>
-          <div className="container">
-            <ul className="">
-              <li className="social"><SocialIcon url="https://www.linkedin.com/in/florenciahnatiuk/" bgColor="#fff" /></li>
-              <li className="social"><SocialIcon url="https://github.com/FlorcitaHnatiuk" network="github" bgColor="#fff" /></li>
-            </ul>
-          </div>
+        <footer>
+          <div className="text-center">All rights reserved</div>
         </footer>
       </div>
     </BrowserRouter>
