@@ -9,9 +9,6 @@ body {
 .site-container {
   min-height: 100vh;
 }
-li{
-  list-style:none;
-}
 main {
   flex: 1;
 }
@@ -81,4 +78,7 @@ main {
 }
 .active-nav {
   left: 0;
+}
+.text-bold {
+  font-weight: bold;
 }
