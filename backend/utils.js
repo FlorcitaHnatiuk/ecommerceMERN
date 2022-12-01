@@ -1,5 +1,15 @@
 import jwt from 'jsonwebtoken';
 
+/*
+function checkAuthentication(req, res, next) {
+  if(req.isAuthenticated()){
+    next();
+  } else{
+    res.redirect('/login');
+  }
+}
+*/
+
 export const generateToken = (user) => {
   return jwt.sign(
     {

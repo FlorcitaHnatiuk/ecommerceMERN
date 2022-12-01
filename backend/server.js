@@ -20,6 +20,23 @@ mongoose
 
 const app = express();
 
+/*
+app.use(session({
+  secret: 'keyboard cat',
+  cookie: {
+    httpOnly: false,
+    secure: false,
+    maxAge: config.TIEMPO_EXPIRACION
+  },
+  rolling: true, 
+  resave: true,
+  saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+*/
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

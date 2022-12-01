@@ -24,7 +24,6 @@ import Button from 'react-bootstrap/Button';
 import { getError } from './utils';
 import axios from 'axios';
 import SearchBox from './components/SearchBox';
-import { SocialIcon } from 'react-social-icons';
 import SearchScreen from './screens/SearchScreen';
 
 function App() {
