@@ -28,6 +28,7 @@ import SearchScreen from './screens/SearchScreen';
 import ProtectedRoute from './components/ProtectedRoute';
 import DashboardScreen from './screens/DashboardScreen';
 import AdminRoute from './components/AdminRoute';
+import { SocialIcon } from 'react-social-icons';
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -75,7 +76,7 @@ function App() {
               </Button>
 
               <LinkContainer to="/">
-                <Navbar.Brand>amazona</Navbar.Brand>
+                <Navbar.Brand>ecommerce</Navbar.Brand>
               </LinkContainer>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
@@ -207,8 +208,8 @@ function App() {
             </Routes>
           </Container>
         </main>
-        <footer>
-          <div className="text-center">All rights reserved</div>
+        <footer className="bg-dark p-3 text-light">
+          <div className="text-center">Made with ♥ by Flor Hnatiuk</div>
         </footer>
       </div>
     </BrowserRouter>
