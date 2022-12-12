@@ -81,7 +81,7 @@ function App() {
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <SearchBox />
-                <Nav className="me-auto  w-100  justify-content-end">
+                <Nav className="me-auto w-100 justify-content-end">
                   <Link to="/cart" className="nav-link">
                     Cart
                     {cart.cartItems.length > 0 && (
