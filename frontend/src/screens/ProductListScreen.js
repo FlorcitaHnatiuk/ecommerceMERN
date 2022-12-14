@@ -94,7 +94,7 @@ export default function ProductListScreen() {
                 <Col>
                     <h1 className="text-center my-5">Products</h1>
                 </Col>
-                <Col className="col text-end">
+                <Col className="col text-end my-5">
                     <div>
                         <Button type="button" onClick={createHandler}>
                             Create Product
