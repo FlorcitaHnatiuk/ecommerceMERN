@@ -52,7 +52,7 @@ export default function DashboardScreen() {
 
     return (
         <div>
-            <h1>Dashboard</h1>
+            <h1 className="text-center my-5">Dashboard</h1>
             {loading ? (
                 <LoadingBox />
             ) : error ? (

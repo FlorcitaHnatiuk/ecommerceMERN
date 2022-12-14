@@ -92,7 +92,7 @@ export default function ProductListScreen() {
         <div>
             <Row>
                 <Col>
-                    <h1>Products</h1>
+                    <h1 className="text-center my-5">Products</h1>
                 </Col>
                 <Col className="col text-end">
                     <div>
