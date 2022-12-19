@@ -7,6 +7,7 @@ import productRouter from './routes/productRoutes.js';
 import userRouter from './routes/userRoutes.js';
 import orderRouter from './routes/orderRoutes.js';
 import uploadRouter from './routes/uploadRoutes.js';
+import infoRouter from './routes/infoRoutes.js'
 import cluster from 'node:cluster';
 import http from 'node:http';
 import { cpus } from 'node:os';
@@ -54,6 +55,7 @@ app.use('/api/seed', seedRouter);
 app.use('/api/products', productRouter);
 app.use('/api/users', userRouter);
 app.use('/api/orders', orderRouter);
+app.use('/api/info', infoRouter);
 
 const __dirname = path.resolve();
 app.use(express.static(path.join(__dirname, '/frontend/build')));
@@ -65,7 +67,11 @@ app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });
 });
 
-const port = process.env.PORT || 5000;
+const port = parseInt(process.argv[2]) || 5000;
 app.listen(port, () => {
-  console.log(`serve at http://localhost:${port}`);
+  console.log(`serve at http://localhost:${port} - PID WORKER ${process.pid}`);
 });
+
+
+// ---- modo CLUSTER ----
+// pm2 start server.js --name="server" --watch -i max PORT
