@@ -7,6 +7,27 @@ import productRouter from './routes/productRoutes.js';
 import userRouter from './routes/userRoutes.js';
 import orderRouter from './routes/orderRoutes.js';
 import uploadRouter from './routes/uploadRoutes.js';
+import cluster from 'node:cluster';
+import http from 'node:http';
+import { cpus } from 'node:os';
+import process from 'node:process';
+
+if (cluster.isPrimary) {
+  console.log(`Primary ${process.pid} is running`)
+
+  for (let i = 0; i < cpus; i++) {
+    cluster.fork();
+  }
+  cluster.on('exit', (worker, code, signal) => {
+    console.log(`Worker ${worker.process.pid} died`)
+  })
+} else {
+  http.createServer((req, res) => {
+    res.writeHead(200);
+    res.end('Hello World')
+  }).listen(5000);
+  console.log(`Worker ${process.pid} started`);
+}
 
 dotenv.config();
 

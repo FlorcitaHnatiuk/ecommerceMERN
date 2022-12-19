@@ -56,7 +56,7 @@ export default function OrderListScreen() {
             <Helmet>
                 <title>Orders</title>
             </Helmet>
-            <h1>Orders</h1>
+            <h1 className="text-center my-3">Orders</h1>
             {loading ? (
                 <LoadingBox></LoadingBox>
             ) : error ? (
