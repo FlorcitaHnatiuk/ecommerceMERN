@@ -13,15 +13,18 @@ import http from 'node:http';
 import { cpus } from 'node:os';
 import process from 'node:process';
 
+//const numCPUs = require('os').cluster().lenght
+
 if (cluster.isPrimary) {
   console.log(cpus)
   console.log(`Primary ${process.pid} is running`)
-
   for (let i = 0; i < cpus; i++) {
     cluster.fork();
   }
+  //Si se cae uno va a crearse otro y va a volver al comienzo del if y asi seguimos a max capacidad
   cluster.on('exit', (worker) => {
     console.log(`Worker ${worker.process.pid} died`, new Date().toLocaleString())
+    cluster.fork()
   })
 } else {
   const port = parseInt(process.argv[2]) || 5000;
@@ -75,7 +78,7 @@ app.use((err, req, res, next) => {
 //Intenté poniendo la función cluster abajo de todo y tampoco funciona. No logro solucionarlo.
 const port = parseInt(process.argv[2]) || 5000;
 app.listen(port, () => {
-  console.log(`serve at http://localhost:${port} - PID WORKER ${process.pid}`);
+  console.log(`Express server at http://localhost:${port} - PID WORKER ${process.pid}`);
 }); 
 
 // ---- modo CLUSTER ----
