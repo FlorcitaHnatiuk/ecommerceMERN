@@ -50,12 +50,7 @@ app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });
 });
 
-// const port = parseInt(process.argv[2]) || 5000;
-// app.listen(port, () => {
-//   console.log(`Express server at http://localhost:${port} - PID WORKER ${process.pid}`);
-// }); 
-
-const numOfCpus = cpus().length
+const numOfCpus = cpus().length 
 
 if (cluster.isPrimary) {
   console.log(`Primary ${process.pid} is running`)
@@ -81,5 +76,14 @@ if (cluster.isPrimary) {
 //=> taskkill /pid <un worker id> /f
 //=> taskkill /pid <primary id> /f => detengo todo el servidor
 
+// ---- modo FORK ----
+// pm2 start server.js --name="server1" --watch port
+// pm2 start server.js --name="server2" --watch -- 5001
+// pm2 start server.js --name="server3" --watch -- 5002
+
 // ---- modo CLUSTER ----
 // pm2 start server.js --name="server" --watch -i max server -f
+
+// ---- FOREVER ---- => no lo logro usar por que al correr el comando se cuelga la computadora
+// forever start server.js -p 8081 8082 8083
+// forever stopall
