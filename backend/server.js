@@ -24,10 +24,14 @@ if (cluster.isPrimary) {
     console.log(`Worker ${worker.process.pid} died`, new Date().toLocaleString())
   })
 } else {
-  http.createServer((req, res) => {
-    res.writeHead(200);
-  }).listen(5000);
-  console.log(`Worker ${process.pid} started`); 
+  const port = parseInt(process.argv[2]) || 5000;
+  app.get('/', (req, res) => {
+    console.log(`Express Server on port ${port} - <b>PID ${process.pid}</b> - ${new Date().toLocaleString()}`)
+    res.send(`Express Server on port ${port} - <b>PID ${process.pid}</b> - ${new Date().toLocaleString()}`)
+  })
+  app.listen(port, err => {
+    if (!err) {console.log(`Express server on port ${port} - PID worker ${process.pid}`)}
+  })
 }
 
 dotenv.config();
@@ -67,11 +71,12 @@ app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });
 });
 
+//Cuando saco de acá el app listen y solo lo ubico dentro del else de workers, status 500.
+//Intenté poniendo la función cluster abajo de todo y tampoco funciona. No logro solucionarlo.
 const port = parseInt(process.argv[2]) || 5000;
 app.listen(port, () => {
   console.log(`serve at http://localhost:${port} - PID WORKER ${process.pid}`);
 }); 
-
 
 // ---- modo CLUSTER ----
 // pm2 start server.js --name="server" --watch -i max PORT
