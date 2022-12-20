@@ -9,7 +9,6 @@ import orderRouter from './routes/orderRoutes.js';
 import uploadRouter from './routes/uploadRoutes.js';
 import infoRouter from './routes/infoRoutes.js'
 import cluster from 'node:cluster';
-import http from 'node:http';
 import { cpus } from 'node:os';
 import process from 'node:process';
 
@@ -53,6 +52,7 @@ app.use((err, req, res, next) => {
 const numOfCpus = cpus().length 
 
 if (cluster.isPrimary) {
+  console.log(`Number of cpus is ${numOfCpus}`)
   console.log(`Primary ${process.pid} is running`)
   for (let i = 0; i < numOfCpus; i++) {
     cluster.fork();
@@ -64,11 +64,11 @@ if (cluster.isPrimary) {
 } else {
   const port = parseInt(process.argv[2]) || 5000;
     app.get('/', (req, res) => {
-    console.log(`Express Server on port ${port} - <b>PID ${process.pid}</b> - ${new Date().toLocaleString()}`)
-    res.send(`Express Server on port ${port} - <b>PID ${process.pid}</b> - ${new Date().toLocaleString()}`)
+    console.log(`Worker on port ${port} - <b>PID ${process.pid}</b> - ${new Date().toLocaleString()}`)
+    res.send(`Worker on port ${port} - <b>PID ${process.pid}</b> - ${new Date().toLocaleString()}`)
   }) 
   app.listen(port, err => {
-    if (!err) {console.log(`Express server on port ${port} - PID worker ${process.pid}`)}
+    if (!err) {console.log(`Worker on port ${port} - PID worker ${process.pid}`)}
   })
 }
 
@@ -87,3 +87,7 @@ if (cluster.isPrimary) {
 // ---- FOREVER ---- => no lo logro usar por que al correr el comando se cuelga la computadora
 // forever start server.js -p 8081 8082 8083
 // forever stopall
+
+// ---- NGINX ----
+// tasklist /fi "imagename eq nginx.exe"
+// start nginx

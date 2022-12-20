@@ -19,15 +19,6 @@ infoRouter.get(
             memory: process.memoryUsage.rss(),
             filePath: __dirname,
         };
-        // info.keys = Object.keys(info);
-        console.log(
-            "Directorio actual de trabajo:" + process.cwd() + "\n",
-            "Id del Proceso:" + process.pid + "\n",
-            "Version de Node:" + process.version + "\n",
-            "Titulo del proceso:" + process.title + "\n",
-            "Sistema Operativo:" + process.platform + "\n",
-            "Uso de Memoria:" + process.memoryUsage.rss() + "\n"
-        );
         res.send(info);
     })
 )
