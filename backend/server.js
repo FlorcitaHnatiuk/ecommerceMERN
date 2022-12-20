@@ -14,7 +14,7 @@ import { cpus } from 'node:os';
 import process from 'node:process';
 
 const numOfCpus = cpus().length
-console.log(numOfCpus)
+//console.log(numOfCpus)
 
 dotenv.config();
 
@@ -61,9 +61,8 @@ app.use((err, req, res, next) => {
 // }); 
 
 if (cluster.isPrimary) {
-  console.log(cpus)
   console.log(`Primary ${process.pid} is running`)
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < numOfCpus; i++) {
     cluster.fork();
   }
   //Si se cae uno va a crearse otro y va a volver al comienzo del if y asi seguimos a max capacidad
