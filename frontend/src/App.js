@@ -32,6 +32,7 @@ import { SocialIcon } from 'react-social-icons';
 import ProductListScreen from './screens/ProductListScreen';
 import ProductEditScreen from './screens/ProductEditScreen';
 import OrderListScreen from './screens/OrderListScreen';
+import InfoScreen from './screens/InfoScreen';
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -129,6 +130,9 @@ function App() {
                       <LinkContainer to="/admin/users">
                         <NavDropdown.Item>Users</NavDropdown.Item>
                       </LinkContainer>
+                      <LinkContainer to="/admin/info">
+                      <NavDropdown.Item>Web Info</NavDropdown.Item>
+                    </LinkContainer>
                     </NavDropdown>
                   )}
                 </Nav>
@@ -230,6 +234,14 @@ function App() {
               </AdminRoute>
             }
           ></Route>
+          <Route
+          path="/admin/info"
+          element={
+            <AdminRoute>
+              <InfoScreen />
+            </AdminRoute>
+          }
+        ></Route>
 
 
               <Route path="/" element={<HomeScreen />} />

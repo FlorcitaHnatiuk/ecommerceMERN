@@ -14,20 +14,20 @@ import { cpus } from 'node:os';
 import process from 'node:process';
 
 if (cluster.isPrimary) {
+  console.log(cpus)
   console.log(`Primary ${process.pid} is running`)
 
   for (let i = 0; i < cpus; i++) {
     cluster.fork();
   }
-  cluster.on('exit', (worker, code, signal) => {
-    console.log(`Worker ${worker.process.pid} died`)
+  cluster.on('exit', (worker) => {
+    console.log(`Worker ${worker.process.pid} died`, new Date().toLocaleString())
   })
 } else {
   http.createServer((req, res) => {
     res.writeHead(200);
-    res.end('Hello World')
   }).listen(5000);
-  console.log(`Worker ${process.pid} started`);
+  console.log(`Worker ${process.pid} started`); 
 }
 
 dotenv.config();
@@ -70,7 +70,7 @@ app.use((err, req, res, next) => {
 const port = parseInt(process.argv[2]) || 5000;
 app.listen(port, () => {
   console.log(`serve at http://localhost:${port} - PID WORKER ${process.pid}`);
-});
+}); 
 
 
 // ---- modo CLUSTER ----

@@ -14,10 +14,10 @@ infoRouter.get(
             path: process.cwd(),
             processId: process.pid,
             nodeVersion: process.version,
-            titulo: process.title,
-            sistema: process.platform,
+            title: process.title,
+            system: process.platform,
             memory: process.memoryUsage.rss(),
-            file: __dirname,
+            filePath: __dirname,
         };
         // info.keys = Object.keys(info);
         console.log(
