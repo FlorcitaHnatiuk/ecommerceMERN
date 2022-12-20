@@ -13,9 +13,6 @@ import http from 'node:http';
 import { cpus } from 'node:os';
 import process from 'node:process';
 
-const numOfCpus = cpus().length
-//console.log(numOfCpus)
-
 dotenv.config();
 
 mongoose
@@ -53,19 +50,18 @@ app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });
 });
 
-//Cuando saco de acá el app listen y solo lo ubico dentro del else de workers, status 500.
-//Intenté poniendo la función cluster abajo de todo y tampoco funciona. No logro solucionarlo.
 // const port = parseInt(process.argv[2]) || 5000;
 // app.listen(port, () => {
 //   console.log(`Express server at http://localhost:${port} - PID WORKER ${process.pid}`);
 // }); 
+
+const numOfCpus = cpus().length
 
 if (cluster.isPrimary) {
   console.log(`Primary ${process.pid} is running`)
   for (let i = 0; i < numOfCpus; i++) {
     cluster.fork();
   }
-  //Si se cae uno va a crearse otro y va a volver al comienzo del if y asi seguimos a max capacidad
   cluster.on('exit', (worker) => {
     console.log(`Worker ${worker.process.pid} died`, new Date().toLocaleString())
     cluster.fork()
@@ -81,5 +77,9 @@ if (cluster.isPrimary) {
   })
 }
 
+//=> tasklist /fi "imagename eq node.exe" => ver uso de memoria de primary y cada worker
+//=> taskkill /pid <un worker id> /f
+//=> taskkill /pid <primary id> /f => detengo todo el servidor
+
 // ---- modo CLUSTER ----
-// pm2 start server.js --name="server" --watch -i max PORT
+// pm2 start server.js --name="server" --watch -i max server -f
