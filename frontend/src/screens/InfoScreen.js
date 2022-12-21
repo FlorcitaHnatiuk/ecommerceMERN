@@ -9,7 +9,7 @@ export default function InfoScreen() {
                 <title>Info Screen</title>
             </Helmet>
             <h1 className="text-center my-5">Web Information</h1>
-            <section class="alert alert-primary">
+                <section class="alert alert-primary">
                 <p><b>Port: </b></p>
                 <p><b>Ops: </b></p>
                 <p><b>Node Version: </b></p>

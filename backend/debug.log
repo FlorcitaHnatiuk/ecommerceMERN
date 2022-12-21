@@ -17,3 +17,14 @@
 [2022-12-21T10:31:38.684] [INFO] prod - connected to db
 [2022-12-21T10:31:38.707] [INFO] prod - connected to db
 [2022-12-21T10:31:38.712] [INFO] prod - connected to db
+[2022-12-21T13:49:35.110] [WARN] prod - Worker 5676 died 21/12/2022 13:49:35
+[2022-12-21T13:49:35.120] [WARN] prod - Worker 15756 died 21/12/2022 13:49:35
+[2022-12-21T13:49:35.126] [WARN] prod - Worker 19708 died 21/12/2022 13:49:35
+[2022-12-21T13:49:39.734] [INFO] prod - Worker on port 5000 - PID worker 18488
+[2022-12-21T13:49:39.755] [INFO] prod - Worker on port 5000 - PID worker 19700
+[2022-12-21T13:49:39.799] [INFO] prod - Worker on port 5000 - PID worker 4336
+[2022-12-21T13:49:39.826] [INFO] prod - Worker on port 5000 - PID worker 15412
+[2022-12-21T13:49:39.837] [INFO] prod - Worker on port 5000 - PID worker 16076
+[2022-12-21T13:49:39.850] [INFO] prod - Worker on port 5000 - PID worker 13156
+[2022-12-21T13:49:39.888] [INFO] prod - Worker on port 5000 - PID worker 8144
+[2022-12-21T13:49:39.918] [INFO] prod - Worker on port 5000 - PID worker 1840
