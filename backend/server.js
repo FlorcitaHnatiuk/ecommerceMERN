@@ -11,22 +11,25 @@ import infoRouter from './routes/infoRoutes.js'
 import cluster from 'node:cluster';
 import { cpus } from 'node:os';
 import process from 'node:process';
+import compression from "compression";
+import logger from "./logger.js";
 
 dotenv.config();
 
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => {
-    console.log('connected to db');
+    logger.info('connected to db');
   })
   .catch((err) => {
-    console.log(err.message);
+    logger.error(err.message);
   });
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(compression());
 
 app.get('/api/keys/paypal', (req, res) => {
   res.send(process.env.PAYPAL_CLIENT_ID || 'sb');
@@ -52,23 +55,23 @@ app.use((err, req, res, next) => {
 const numOfCpus = cpus().length 
 
 if (cluster.isPrimary) {
-  console.log(`Number of cpus is ${numOfCpus}`)
-  console.log(`Primary ${process.pid} is running`)
+  logger.info(`Number of cpus is ${numOfCpus}`)
+  logger.info(`Primary ${process.pid} is running`)
   for (let i = 0; i < numOfCpus; i++) {
     cluster.fork();
   }
   cluster.on('exit', (worker) => {
-    console.log(`Worker ${worker.process.pid} died`, new Date().toLocaleString())
+    logger.warn(`Worker ${worker.process.pid} died`, new Date().toLocaleString())
     cluster.fork()
   })
 } else {
   const port = parseInt(process.argv[2]) || 5000;
     app.get('/', (req, res) => {
-    console.log(`Worker on port ${port} - <b>PID ${process.pid}</b> - ${new Date().toLocaleString()}`)
+    logger.info(`Worker on port ${port} - <b>PID ${process.pid}</b> - ${new Date().toLocaleString()}`)
     res.send(`Worker on port ${port} - <b>PID ${process.pid}</b> - ${new Date().toLocaleString()}`)
   }) 
   app.listen(port, err => {
-    if (!err) {console.log(`Worker on port ${port} - PID worker ${process.pid}`)}
+    if (!err) {logger.info(`Worker on port ${port} - PID worker ${process.pid}`)}
   })
 }
 
