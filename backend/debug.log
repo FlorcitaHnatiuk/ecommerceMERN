@@ -1,0 +1,19 @@
+[2022-12-21T10:31:33.910] [INFO] prod - Number of cpus is 8
+[2022-12-21T10:31:33.911] [INFO] prod - Primary 16240 is running
+[2022-12-21T10:31:34.652] [INFO] prod - connected to db
+[2022-12-21T10:31:37.938] [INFO] prod - Worker on port 5000 - PID worker 15740
+[2022-12-21T10:31:37.980] [INFO] prod - Worker on port 5000 - PID worker 13944
+[2022-12-21T10:31:37.984] [INFO] prod - Worker on port 5000 - PID worker 15756
+[2022-12-21T10:31:38.000] [INFO] prod - Worker on port 5000 - PID worker 17420
+[2022-12-21T10:31:38.007] [INFO] prod - Worker on port 5000 - PID worker 15672
+[2022-12-21T10:31:38.041] [INFO] prod - Worker on port 5000 - PID worker 5676
+[2022-12-21T10:31:38.057] [INFO] prod - Worker on port 5000 - PID worker 19708
+[2022-12-21T10:31:38.122] [INFO] prod - Worker on port 5000 - PID worker 19264
+[2022-12-21T10:31:38.627] [INFO] prod - connected to db
+[2022-12-21T10:31:38.653] [INFO] prod - connected to db
+[2022-12-21T10:31:38.653] [INFO] prod - connected to db
+[2022-12-21T10:31:38.671] [INFO] prod - connected to db
+[2022-12-21T10:31:38.670] [INFO] prod - connected to db
+[2022-12-21T10:31:38.684] [INFO] prod - connected to db
+[2022-12-21T10:31:38.707] [INFO] prod - connected to db
+[2022-12-21T10:31:38.712] [INFO] prod - connected to db
