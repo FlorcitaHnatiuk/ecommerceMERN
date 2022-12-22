@@ -13,6 +13,7 @@ import { cpus } from 'node:os';
 import process from 'node:process';
 import compression from "compression";
 import logger from "./logger.js";
+import { isPrimitive } from 'util';
 
 dotenv.config();
 
@@ -52,24 +53,50 @@ app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });
 });
 
-const numOfCpus = cpus().length 
+function isPrime(num) {
+  if ([2, 3].includes(num)) return true;
+  else if ([2, 3].some(n => num % n == 0)) return false;
+  else {
+    let i = 5, w = 2;
+    while((i ** 2) <= num) {
+      if ( num % i == 0) return false;
+      i += w
+      w = 6 - w
+    }
+  }
+  return true;
+}
 
-if (cluster.isPrimary) {
+//const numOfCpus = cpus().length
+const port = parseInt(process.argv[2]) || 5000;
+const clusterMode = process.argv[3] == 'CLUSTER'
+
+if (clusterMode && cluster.isPrimary) {
+
+  const numOfCpus = cpus().length 
   logger.info(`Number of cpus is ${numOfCpus}`)
   logger.info(`Primary ${process.pid} is running`)
+
   for (let i = 0; i < numOfCpus; i++) {
     cluster.fork();
   }
+
   cluster.on('exit', (worker) => {
     logger.warn(`Worker ${worker.process.pid} died`, new Date().toLocaleString())
     cluster.fork()
   })
 } else {
-  const port = parseInt(process.argv[2]) || 5000;
+    const app = express()
     app.get('/', (req, res) => {
-    res.send(`Worker on port ${port} - <b>PID ${process.pid}</b> - ${new Date().toLocaleString()}`)
+    const primes = []
+    const max = Number(req.query.max) || 1000
+    for (let i = 0; i < max; i++) {
+      if (isPrime(i)) primes.push(i)
+    }
+    res.json(primes)
   }) 
   app.listen(port, err => {
+    logger.info(`Express server on port ${port}`)
     if (!err) {logger.info(`Worker on port ${port} - PID worker ${process.pid}`)}
   })
 }
