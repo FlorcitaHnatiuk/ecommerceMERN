@@ -1,11 +1,13 @@
 import express from 'express';
 import expressAsyncHandler from 'express-async-handler';
-import { isAuth, isAdmin } from '../utils.js';
+/* import { isAuth, isAdmin } from '../utils.js'; */
 
 const infoRouter = express.Router();
 
 infoRouter.get(
     '/',
+/*  isAuth,
+    isAdmin, */
     expressAsyncHandler(async (req, res) => {
         const info = {
             port: process.port,

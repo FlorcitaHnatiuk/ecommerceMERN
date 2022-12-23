@@ -7,7 +7,8 @@ import productRouter from './routes/productRoutes.js';
 import userRouter from './routes/userRoutes.js';
 import orderRouter from './routes/orderRoutes.js';
 import uploadRouter from './routes/uploadRoutes.js';
-import infoRouter from './routes/infoRoutes.js'
+import infoRouter from './routes/infoRoutes.js';
+import randomRouter from './routes/randomRoutes.js';
 import cluster from 'node:cluster';
 import { cpus } from 'node:os';
 import process from 'node:process';
@@ -41,6 +42,7 @@ app.use('/api/products', productRouter);
 app.use('/api/users', userRouter);
 app.use('/api/orders', orderRouter);
 app.use('/api/info', infoRouter);
+app.use('/api/random', randomRouter);
 
 const __dirname = path.resolve();
 app.use(express.static(path.join(__dirname, '/frontend/build')));
