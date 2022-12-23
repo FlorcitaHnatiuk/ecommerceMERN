@@ -5,9 +5,7 @@ import { isAuth, isAdmin } from '../utils.js';
 const infoRouter = express.Router();
 
 infoRouter.get(
-    '/info',
-    isAuth,
-    isAdmin,
+    '/',
     expressAsyncHandler(async (req, res) => {
         const info = {
             port: process.port,
@@ -17,7 +15,6 @@ infoRouter.get(
             title: process.title,
             system: process.platform,
             memory: process.memoryUsage.rss(),
-            filePath: __dirname,
         };
         res.send(info);
     })
